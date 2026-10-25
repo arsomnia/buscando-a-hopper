@@ -1,3 +1,8 @@
+---
+const base = import.meta.env.BASE_URL;
+const siteUrl = Astro.site ? new URL(base, Astro.site).href : base;
+const ogImage = new URL('imgs/img_00.jpeg', siteUrl).href;
+---
 <!doctype html>
 <html lang="es">
 	<head>
@@ -5,8 +10,8 @@
 		<meta name="viewport" content="width=device-width" />
 		
 		<!-- Update favicon links - add ICO file first for better search engine recognition -->
-		<link rel="icon" type="image/x-icon" href="/favicon.ico">
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href={`${base}favicon.ico`}>
+		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
 		
 		<!-- SEO Meta Tags -->
 		<meta name="description" content="buscando a Hopper: una exploración fotográfica de la soledad" />
@@ -16,16 +21,12 @@
 		<!-- Open Graph / Social Media -->
 		<meta property="og:title" content="buscando a Hopper" />
 		<meta property="og:description" content="una exploración fotográfica de la soledad" />
-		<meta property="og:image" content="https://www.buscando-a-hopper.com/imgs/img_00.jpeg" />
-		<meta property="og:url" content="https://www.buscando-a-hopper.com" />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:url" content={siteUrl} />
 		<meta property="og:type" content="website" />
 		
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
-		
-		<!-- DNS preconnect for faster loading -->
-		<link rel="preconnect" href="https://www.buscando-a-hopper.com">
-		<link rel="dns-prefetch" href="https://www.buscando-a-hopper.com">
 		
 		<!-- Page-level caching -->
 		<meta http-equiv="Cache-Control" content="max-age=86400">
@@ -33,17 +34,17 @@
 		<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<title>buscando a Hopper</title>
-		<link rel="canonical" href="https://www.buscando-a-hopper.com/" />
+		<link rel="canonical" href={siteUrl} />
 		
 		<!-- Apple Touch Icon -->
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="180x180" href={`${base}apple-touch-icon.png`}>
 		
 		<!-- Additional favicon formats -->
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="icon" type="image/png" sizes="32x32" href={`${base}favicon-32x32.png`}>
+		<link rel="icon" type="image/png" sizes="16x16" href={`${base}favicon-16x16.png`}>
 		
 		<!-- Web App Manifest -->
-		<link rel="manifest" href="/site.webmanifest">
+		<link rel="manifest" href={`${base}site.webmanifest`}>
 	</head>
 	<body>
 		<slot />
@@ -101,8 +102,7 @@
 	window.scrollTo(0, 0);
 </script>
 
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "VisualArtwork",
   "name": "buscando a Hopper",
@@ -112,20 +112,17 @@
   },
   "artform": "Photography",
   "description": "una exploración fotográfica de la soledad",
-  "url": "https://www.buscando-a-hopper.com"
-}
-</script>
+  "url": siteUrl
+})} />
 
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "buscando a Hopper",
-  "url": "https://www.buscando-a-hopper.com",
+  "url": siteUrl,
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://www.buscando-a-hopper.com/?q={search_term_string}",
+    "target": `${siteUrl}?q={search_term_string}`,
     "query-input": "required name=search_term_string"
   }
-}
-</script>
+})} />

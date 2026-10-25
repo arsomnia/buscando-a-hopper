@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Sobre mí | buscando a Hopper">
@@ -14,11 +15,11 @@ import { Image } from 'astro:assets';
           <p>un diálogo entre la pintura y la fotografía</p>
           <p>un juego.</p>
         </div>
-        <a href="/" class="back-link" aria-label="Volver a la página principal">&#8592;</a>
+        <a href={base} class="back-link" aria-label="Volver a la página principal">&#8592;</a>
       </div>
       <div class="photo-column">
         <div class="photo-frame">
-          <img src="/imgs/foto_perfil.jpeg" alt="Foto de perfil del creador, Orlando Angulo" />
+          <img src={`${base}imgs/foto_perfil.jpeg`} alt="Foto de perfil del creador, Orlando Angulo" />
         </div>
       </div>
     </div>

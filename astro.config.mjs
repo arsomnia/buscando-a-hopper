@@ -10,5 +10,5 @@ export default defineConfig({
     }
   },
   site: 'https://arsomnia.github.io',
-  base: '/looking-for-hopper/',
+  base: '/buscando-a-hopper/',
 });

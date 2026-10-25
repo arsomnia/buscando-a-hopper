@@ -1,3 +1,9 @@
+const withBase = (path) => {
+  const base = import.meta.env.BASE_URL || '/';
+  const normalized = path.startsWith('/') ? path.slice(1) : path;
+  return `${base.endsWith('/') ? base : `${base}/`}${normalized}`;
+};
+
 export function getImages() {
   // Create an array of image objects with proper paths
   const images = [];
@@ -42,7 +48,7 @@ export function getImages() {
     const extension = imageFormats[formattedNum] || "jpeg";
     
     // Use absolute path with the determined extension
-    const imagePath = `/imgs/img_${formattedNum}.${extension}`;
+    const imagePath = withBase(`/imgs/img_${formattedNum}.${extension}`);
     
     images.push({
       src: imagePath,
@@ -58,7 +64,7 @@ export function getImages() {
       const variantKey = `${formattedNum}b`;
       const variantExtension = variantFormats[variantKey] || "jpeg";
       
-      const bImagePath = `/imgs/img_${formattedNum}b.${variantExtension}`;
+      const bImagePath = withBase(`/imgs/img_${formattedNum}b.${variantExtension}`);
       
       images.push({
         src: bImagePath,
