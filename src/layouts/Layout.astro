@@ -1,7 +1,7 @@
 ---
 const base = import.meta.env.BASE_URL;
 const siteUrl = Astro.site ? new URL(base, Astro.site).href : base;
-const ogImage = new URL('imgs/img_00.jpeg', siteUrl).href;
+const ogImage = new URL('og-image.jpg', siteUrl).href;
 ---
 <!doctype html>
 <html lang="es">
@@ -14,19 +14,28 @@ const ogImage = new URL('imgs/img_00.jpeg', siteUrl).href;
 		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
 		
 		<!-- SEO Meta Tags -->
-		<meta name="description" content="buscando a Hopper: una exploración fotográfica de la soledad" />
+		<meta name="description" content="buscando a Hopper: una exploración fotográfica con los ojos del pintor Edward Hopper" />
 		<meta name="keywords" content="fotografía, arte, Hopper, portafolio, España, momentos, visual, documental" />
 		<meta name="author" content="Orlando Angulo" />
 		
 		<!-- Open Graph / Social Media -->
 		<meta property="og:title" content="buscando a Hopper" />
-		<meta property="og:description" content="una exploración fotográfica de la soledad" />
-		<meta property="og:image" content={ogImage} />
+			<meta property="og:description" content="una exploración fotográfica con los ojos del pintor Edward Hopper" />
+			<meta property="og:image" content={ogImage} />
+		<meta property="og:image:secure_url" content={ogImage} />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="buscando a Hopper" />
 		<meta property="og:url" content={siteUrl} />
 		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_ES" />
 		
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:title" content="buscando a Hopper" />
+		<meta name="twitter:description" content="una exploración fotográfica con los ojos del pintor Edward Hopper" />
 		
 		<!-- Page-level caching -->
 		<meta http-equiv="Cache-Control" content="max-age=86400">
@@ -111,7 +120,7 @@ const ogImage = new URL('imgs/img_00.jpeg', siteUrl).href;
     "name": "Orlando Angulo"
   },
   "artform": "Photography",
-  "description": "una exploración fotográfica de la soledad",
+  "description": "una exploración fotográfica con los ojos del pintor Edward Hopper",
   "url": siteUrl
 })} />
 
