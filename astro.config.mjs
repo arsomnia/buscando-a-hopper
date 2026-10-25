@@ -9,6 +9,6 @@ export default defineConfig({
     ssr: {
     }
   },
-  site: 'https://www.buscando-a-hopper.com',
-  base: '/',
+  site: 'https://arsomnia.github.io',
+  base: '/looking-for-hopper/',
 });
